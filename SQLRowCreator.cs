@@ -10,7 +10,14 @@ public static class SQLRowCreator
 {
     public static string CreateRow(string tableName, List<ISQLDataType> values)
     {
-        if (values == null || values.Count == 0) return "";
+        return CreateRow(tableName, values.ToArray());
+    }
+
+    public static string CreateRow(string tableName, params ISQLDataType[] values)
+    {
+        if (values == null
+            || values.Length == 0
+            || tableName == null) return "";
 
         StringBuilder returnValue = new();
 
@@ -19,7 +26,7 @@ public static class SQLRowCreator
         int iterator = 0;
         returnValue.Append(values[iterator++].GetValue());
 
-        while (iterator < values.Count)
+        while (iterator < values.Length)
         {
             returnValue.Append($", {values[iterator++].GetValue()}");
         }

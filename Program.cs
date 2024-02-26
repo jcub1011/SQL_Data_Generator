@@ -5,13 +5,12 @@
         static void Main(string[] args)
         {
             var result = SQLRowCreator.CreateRow("takes", 
-                new() {
                     new SQLNumber(10),
                     new SQLString("Hello World"),
                     new SQLString("Hello World"),
                     new SQLString("Hello World"),
                     new SQLString("Hello World")
-                });
+                    );
             Console.WriteLine(result);
         }
     }
