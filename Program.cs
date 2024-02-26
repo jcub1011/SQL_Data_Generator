@@ -12,6 +12,7 @@
                     new SQLString("Hello World")
                     );
             Console.WriteLine(result);
+            SQLFileManager temp = new("TestSQL.sql");
         }
     }
 }
