@@ -75,7 +75,7 @@ public class SQLFileManager : IDisposable
         sw.WriteLine(str);
     }
 
-    public void AppendStrings(string[] strings)
+    public void AppendStrings(params string[] strings)
     {
         using StreamWriter sw = new(_filePath, true);
         foreach(var str in strings)

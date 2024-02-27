@@ -28,6 +28,10 @@
 
             var loansInsert = TableInsertGenerator.CreateLoansInsert(people, books);
             Console.WriteLine(loansInsert);
+
+            SQLFileManager file = new("test.sql");
+            file.AppendStrings(booksInsert, borrowerInsert, studroomsInsert,
+                inventoryInsert, loansInsert);
         }
 
         static void PrintList<T>(List<T> list) where T : struct
