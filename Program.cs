@@ -32,6 +32,10 @@
             SQLFileManager file = new("test.sql");
             file.AppendStrings(booksInsert, borrowerInsert, studroomsInsert,
                 inventoryInsert, loansInsert);
+
+
+            var date = new SQLDate(DateTime.Now);
+            Console.WriteLine(date.GetValue());
         }
 
         static void PrintList<T>(List<T> list) where T : struct
