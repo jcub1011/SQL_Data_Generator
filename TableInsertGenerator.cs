@@ -52,7 +52,8 @@ public static class TableInsertGenerator
             result.AppendLine(SQLRowCreator.CreateRow("borrowers",
                 new SQLNumber(row.ID),
                 new SQLString(row.FirstName),
-                new SQLString(row.LastName)));
+                new SQLString(row.LastName),
+                new SQLDate(row.DOB)));
         }
 
         return result.ToString();

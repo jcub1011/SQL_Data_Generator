@@ -25,5 +25,19 @@ namespace SQL_Data_Generator
             int range = (DateTime.Today - start).Days;
             return start.AddDays(_rand.Next(range));
         }
+
+        /// <summary>
+        /// Creates a random date starting from [today - dayRange] to 
+        /// [today + dayRange].
+        /// </summary>
+        /// <param name="dayRange"></param>
+        /// <returns></returns>
+        public static DateTime GetRandDateWithinRange(int dayRange)
+        {
+            DateTime middle = DateTime.Today;
+            int range = _rand.Next(dayRange * 2);
+
+            return middle.AddDays(range - dayRange);
+        }
     }
 }

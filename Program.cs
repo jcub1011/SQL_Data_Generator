@@ -32,10 +32,6 @@
             SQLFileManager file = new("test.sql");
             file.AppendStrings(booksInsert, borrowerInsert, studroomsInsert,
                 inventoryInsert, loansInsert);
-
-
-            var date = new SQLDate(RandomDateGenerator.GetRandPastDate(2000, 1, 1));
-            Console.WriteLine(date.GetValue());
         }
 
         static void PrintList<T>(List<T> list) where T : struct

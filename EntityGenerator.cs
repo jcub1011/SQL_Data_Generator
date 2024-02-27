@@ -30,17 +30,19 @@ public readonly struct BorrowerRow
     public readonly int ID;
     public readonly string FirstName;
     public readonly string LastName;
+    public readonly DateTime DOB;
 
-    public BorrowerRow(int id, string firstName, string lastName)
+    public BorrowerRow(int id, string firstName, string lastName, DateTime dateOfBirth)
     {
         ID = id;
         FirstName = firstName;
         LastName = lastName;
+        DOB = dateOfBirth;
     }
 
     public override string ToString()
     {
-        return $"ID: {ID}, Name: '{FirstName} {LastName}'";
+        return $"ID: {ID}, Name: '{FirstName} {LastName}', DOB: '{DOB}'";
     }
 }
 
@@ -98,7 +100,8 @@ public static class EntityGenerator
             borrowers.Add(new(
                 idGen.GetUniqueID(),
                 temp.first,
-                temp.last));
+                temp.last,
+                RandomDateGenerator.GetRandPastDate(1960, 1, 1)));
         }
 
         return borrowers;
