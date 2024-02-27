@@ -17,7 +17,7 @@ namespace SQL_Data_Generator
         /// <param name="minMonth"></param>
         /// <param name="minDay"></param>
         /// <returns></returns>
-        public static DateTime GetRandDate(int minYear, int minMonth, int minDay)
+        public static DateTime GetRandPastDate(int minYear, int minMonth, int minDay)
         {
             /// Thanks to https://stackoverflow.com/questions/194863/random-date-in-c-sharp
             /// for the algorithm.

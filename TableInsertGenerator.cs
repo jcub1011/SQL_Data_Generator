@@ -34,6 +34,11 @@ public readonly struct BorrowerRow
     }
 }
 
+public readonly struct StudyRoomRow
+{
+    public readonly int RoomNumber;
+}
+
 public static class TableInsertGenerator
 {
     static Random _rand = new();
@@ -107,9 +112,18 @@ public static class TableInsertGenerator
         return result.ToString();
     }
 
-    public static string CreateStudyRoomInsert(List<BorrowerRow> borrowers)
+    public static string CreateStudyRoomInsert(List<StudyRoomRow> rooms, List<BorrowerRow> borrowers)
     {
+        var result = new StringBuilder();
 
+        foreach (var room in rooms)
+        {
+            result.AppendLine(SQLRowCreator.CreateRow("studyrooms",
+                new SQLNumber(room.RoomNumber),
+                new SQLNumber(PickRand(borrowers).ID)));
+        }
+
+        return result.ToString();
     }
 
     static T? PickRand<T> (List<T> source)
