@@ -14,7 +14,7 @@ public static class TableInsertGenerator
     /// Creates an insert using the provided list.
     /// </summary>
     /// <returns></returns>
-    public static string GenerateBooksInsert(List<BookRow> rows)
+    public static string CreateBooksInsert(List<BookRow> rows)
     {
         var result = new StringBuilder();
 
@@ -29,7 +29,7 @@ public static class TableInsertGenerator
         return result.ToString();
     }
 
-    public static string GenerateInventoryInsert(List<BookRow> rows)
+    public static string CreateInventoryInsert(List<BookRow> rows)
     {
         var result = new StringBuilder();
 
@@ -43,7 +43,7 @@ public static class TableInsertGenerator
         return result.ToString();
     }
 
-    public static string GenerateBorrowerInsert(List<BorrowerRow> rows)
+    public static string CreateBorrowerInsert(List<BorrowerRow> rows)
     {
         var result = new StringBuilder();
 

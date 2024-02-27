@@ -8,8 +8,26 @@
     {
         static void Main(string[] args)
         {
-            var result = EntityGenerator.GenerateBooks(10);
-            PrintList(result);
+            var books = EntityGenerator.GenerateBooks(10);
+            PrintList(books);
+            var booksInsert = TableInsertGenerator.CreateBooksInsert(books);
+            Console.WriteLine(booksInsert);
+
+            var people = EntityGenerator.GenerateBorrowers(10);
+            PrintList(people);
+            var borrowerInsert = TableInsertGenerator.CreateBorrowerInsert(people);
+            Console.WriteLine(borrowerInsert);
+
+            var rooms = EntityGenerator.GenerateStudyRoom(10);
+            PrintList(rooms);
+            var studroomsInsert = TableInsertGenerator.CreateStudyRoomInsert(rooms, people);
+            Console.WriteLine(studroomsInsert);
+
+            var inventoryInsert = TableInsertGenerator.CreateInventoryInsert(books);
+            Console.WriteLine(inventoryInsert);
+
+            var loansInsert = TableInsertGenerator.CreateLoansInsert(people, books);
+            Console.WriteLine(loansInsert);
         }
 
         static void PrintList<T>(List<T> list) where T : struct
