@@ -1,5 +1,9 @@
 ﻿namespace SQL_Data_Generator
 {
+    /// <summary>
+    /// Names.txt file must be placed in application base directory. 
+    /// Generated sql files will be placed in the application base directory.
+    /// </summary>
     internal class Program
     {
         static void Main(string[] args)

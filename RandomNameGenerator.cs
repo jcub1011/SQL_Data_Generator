@@ -1,5 +1,8 @@
 ﻿namespace SQL_Data_Generator;
 
+/// <summary>
+/// This class requires a 'Names.txt' file in the application root directory.
+/// </summary>
 public static class RandomNameGenerator
 {
     static List<string>? _names;
