@@ -6,39 +6,6 @@ using System.Threading.Tasks;
 
 namespace SQL_Data_Generator;
 
-public readonly struct BookRow
-{
-    public readonly int ISBN;
-    public readonly string Title;
-    public readonly string Author;
-
-    public BookRow(int isbn,  string title, string author)
-    {
-        ISBN = isbn;
-        Title = title;
-        Author = author;
-    }
-}
-
-public readonly struct BorrowerRow
-{
-    public readonly int ID;
-    public readonly string FirstName;
-    public readonly string LastName;
-
-    public BorrowerRow(int id, string firstName, string lastName)
-    {
-        ID = id;
-        FirstName = firstName;
-        LastName = lastName;
-    }
-}
-
-public readonly struct StudyRoomRow
-{
-    public readonly int RoomNumber;
-}
-
 public static class TableInsertGenerator
 {
     static Random _rand = new();
