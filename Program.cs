@@ -8,18 +8,16 @@
     {
         static void Main(string[] args)
         {
-            var result = SQLRowCreator.CreateRow("takes", 
-                    new SQLNumber(10),
-                    new SQLString("Hello World"),
-                    new SQLString("Hello World"),
-                    new SQLString("Hello World"),
-                    new SQLString("Hello World")
-                    );
-            Console.WriteLine(result);
-            SQLFileManager temp = new("TestSQL.sql");
+            var result = EntityGenerator.GenerateBooks(10);
+            PrintList(result);
+        }
 
-            Console.WriteLine(
-            RandomNameGenerator.GetName());
+        static void PrintList<T>(List<T> list) where T : struct
+        {
+            foreach(var item in list)
+            {
+                Console.WriteLine(item.ToString());
+            }
         }
     }
 }

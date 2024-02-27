@@ -18,6 +18,11 @@ public readonly struct BookRow
         Title = title;
         Author = author;
     }
+
+    public override string ToString()
+    {
+        return $"ISBN: {ISBN}, Title: '{Title}', Author: '{Author}'";
+    }
 }
 
 public readonly struct BorrowerRow
@@ -32,6 +37,11 @@ public readonly struct BorrowerRow
         FirstName = firstName;
         LastName = lastName;
     }
+
+    public override string ToString()
+    {
+        return $"ID: {ID}, Name: '{FirstName} {LastName}'";
+    }
 }
 
 public readonly struct StudyRoomRow
@@ -41,6 +51,11 @@ public readonly struct StudyRoomRow
     public StudyRoomRow(int roomNumber)
     {
         RoomNumber = roomNumber;
+    }
+
+    public override string ToString()
+    {
+        return $"Room Number: {RoomNumber}";
     }
 }
 
@@ -57,7 +72,7 @@ public static class EntityGenerator
         while (count-- > 0)
         {
             temp = RandomNameGenerator.GetName();
-            randTitle = temp.first + ":" + temp.last;
+            randTitle = temp.first + ": " + temp.last;
             temp = RandomNameGenerator.GetName();
             randAuthor = temp.first + " " + temp.last;
 
