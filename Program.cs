@@ -34,7 +34,7 @@
                 inventoryInsert, loansInsert);
 
 
-            var date = new SQLDate(DateTime.Now);
+            var date = new SQLDate(RandomDateGenerator.GetRandPastDate(2000, 1, 1));
             Console.WriteLine(date.GetValue());
         }
 
