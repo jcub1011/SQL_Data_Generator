@@ -8,17 +8,17 @@
     {
         static void Main(string[] args)
         {
-            var books = EntityGenerator.GenerateBooks(10);
+            var books = EntityGenerator.GenerateBooks(200);
             PrintList(books);
             var booksInsert = TableInsertGenerator.CreateBooksInsert(books);
             Console.WriteLine(booksInsert);
 
-            var people = EntityGenerator.GenerateBorrowers(10);
+            var people = EntityGenerator.GenerateBorrowers(100);
             PrintList(people);
             var borrowerInsert = TableInsertGenerator.CreateBorrowerInsert(people);
             Console.WriteLine(borrowerInsert);
 
-            var rooms = EntityGenerator.GenerateStudyRoom(10);
+            var rooms = EntityGenerator.GenerateStudyRoom(100);
             PrintList(rooms);
             var studroomsInsert = TableInsertGenerator.CreateStudyRoomInsert(rooms, people);
             Console.WriteLine(studroomsInsert);
