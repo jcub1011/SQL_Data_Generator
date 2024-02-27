@@ -84,7 +84,7 @@ public class SQLFileManager : IDisposable
         }
     }
 
-    string ConvertToPath(string fileName)
+    public static string ConvertToPath(string fileName)
     {
         return AppDomain.CurrentDomain.BaseDirectory + fileName;
     }

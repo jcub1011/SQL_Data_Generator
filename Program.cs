@@ -13,6 +13,9 @@
                     );
             Console.WriteLine(result);
             SQLFileManager temp = new("TestSQL.sql");
+
+            Console.WriteLine(
+            RandomNameGenerator.GetName());
         }
     }
 }
