@@ -73,7 +73,8 @@ public static class TableInsertGenerator
             {
                 result.AppendLine(SQLRowCreator.CreateRow("loans",
                     new SQLNumber(borrower.ID),
-                    new SQLNumber(PickRand(books).ISBN)));
+                    new SQLNumber(PickRand(books).ISBN),
+                    new SQLDate(RandomDateGenerator.GetRandDateWithinRange(15))));
             }
         }
 
@@ -88,7 +89,8 @@ public static class TableInsertGenerator
         {
             result.AppendLine(SQLRowCreator.CreateRow("studyrooms",
                 new SQLNumber(room.RoomNumber),
-                new SQLNumber(PickRand(borrowers).ID)));
+                new SQLNumber(PickRand(borrowers).ID),
+                new SQLDate(RandomDateGenerator.GetRandDateWithinRange(5))));
         }
 
         return result.ToString();
