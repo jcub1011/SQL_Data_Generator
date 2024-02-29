@@ -8,30 +8,33 @@
     {
         static void Main(string[] args)
         {
-            var books = EntityGenerator.GenerateBooks(1000);
-            PrintList(books);
-            var booksInsert = TableInsertGenerator.CreateBooksInsert(books);
-            Console.WriteLine(booksInsert);
+            //var books = EntityGenerator.GenerateBooks(10000);
+            ////PrintList(books);
+            //var booksInsert = TableInsertGenerator.CreateBooksInsert(books);
+            ////Console.WriteLine(booksInsert);
 
-            var people = EntityGenerator.GenerateBorrowers(500);
-            PrintList(people);
-            var borrowerInsert = TableInsertGenerator.CreateBorrowerInsert(people);
-            Console.WriteLine(borrowerInsert);
+            //var people = EntityGenerator.GenerateBorrowers(1000);
+            ////PrintList(people);
+            //var borrowerInsert = TableInsertGenerator.CreateBorrowerInsert(people);
+            ////Console.WriteLine(borrowerInsert);
 
-            var rooms = EntityGenerator.GenerateStudyRoom(20);
-            PrintList(rooms);
-            var studroomsInsert = TableInsertGenerator.CreateStudyRoomInsert(rooms, people);
-            Console.WriteLine(studroomsInsert);
+            //var rooms = EntityGenerator.GenerateStudyRoom(50);
+            ////PrintList(rooms);
+            //var studroomsInsert = TableInsertGenerator.CreateStudyRoomInsert(rooms, people);
+            ////Console.WriteLine(studroomsInsert);
 
-            var inventoryInsert = TableInsertGenerator.CreateInventoryInsert(books);
-            Console.WriteLine(inventoryInsert);
+            //var inventoryInsert = TableInsertGenerator.CreateInventoryInsert(books);
+            ////Console.WriteLine(inventoryInsert);
 
-            var loansInsert = TableInsertGenerator.CreateLoansInsert(people, books);
-            Console.WriteLine(loansInsert);
+            //var loansInsert = TableInsertGenerator.CreateLoansInsert(people, books);
+            ////Console.WriteLine(loansInsert);
 
-            SQLFileManager file = new("test.sql");
-            file.AppendStrings(booksInsert, borrowerInsert, studroomsInsert,
-                inventoryInsert, loansInsert);
+            //SQLFileManager file = new("test.sql");
+            //file.AppendStrings(booksInsert, borrowerInsert, studroomsInsert,
+            //    inventoryInsert, loansInsert);
+
+            // Create row automatically converts int, double, string, and DateTime to sql.
+            Console.WriteLine(SQLRowCreator.CreateRow("test_table", 10, 50, "Hello World", DateTime.Now));
         }
 
         static void PrintList<T>(List<T> list) where T : struct

@@ -21,7 +21,7 @@ public static class TableInsertGenerator
         foreach(var row in rows)
         {
             result.AppendLine(SQLRowCreator.CreateRow("books",
-                row.ISBN.AsSQLNumber(),
+                row.ISBN.AsSQLInt(),
                 row.Title.AsSQLString(),
                 row.Author.AsSQLString()));
         }
@@ -36,8 +36,8 @@ public static class TableInsertGenerator
         foreach(var row in rows)
         {
             result.AppendLine(SQLRowCreator.CreateRow("inventory",
-                row.ISBN.AsSQLNumber(),
-                _rand.Next(10).AsSQLNumber()));
+                row.ISBN.AsSQLInt(),
+                _rand.Next(10).AsSQLInt()));
         }
 
         return result.ToString();
@@ -50,9 +50,9 @@ public static class TableInsertGenerator
         foreach (var row in rows)
         {
             result.AppendLine(SQLRowCreator.CreateRow("borrowers",
-                row.ID.AsSQLNumber(),
-                row.FirstName.AsSQLString(),
+                row.ID.AsSQLInt(),
                 row.LastName.AsSQLString(),
+                row.FirstName.AsSQLString(),
                 row.DOB.AsSQLDate()));
         }
 
@@ -72,8 +72,8 @@ public static class TableInsertGenerator
             while (borrowerBookCount-- > 0)
             {
                 result.AppendLine(SQLRowCreator.CreateRow("loans",
-                    borrower.ID.AsSQLNumber(),
-                    PickRand(books).ISBN.AsSQLNumber(),
+                    borrower.ID.AsSQLInt(),
+                    PickRand(books).ISBN.AsSQLInt(),
                     RandomDateGenerator.GetRandDateWithinRange(15).AsSQLDate()));
             }
         }
@@ -88,8 +88,8 @@ public static class TableInsertGenerator
         foreach (var room in rooms)
         {
             result.AppendLine(SQLRowCreator.CreateRow("studyrooms",
-                room.RoomNumber.AsSQLNumber(),
-                PickRand(borrowers).ID.AsSQLNumber(),
+                room.RoomNumber.AsSQLInt(),
+                PickRand(borrowers).ID.AsSQLInt(),
                 RandomDateGenerator.GetRandDateWithinRange(5).AsSQLDate()));
         }
 

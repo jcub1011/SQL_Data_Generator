@@ -8,34 +8,8 @@ namespace SQL_Data_Generator;
 
 public static class SQLRowCreator
 {
-    public static string CreateRow(string tableName, List<ISQLDataType> values)
-    {
-        return CreateRow(tableName, values.ToArray());
-    }
-
-    public static string CreateRow(string tableName, params ISQLDataType[] values)
-    {
-        if (values == null
-            || values.Length == 0
-            || tableName == null) return "";
-
-        StringBuilder returnValue = new();
-
-        returnValue.Append($"insert into {tableName} values(");
-
-        int iterator = 0;
-        returnValue.Append(values[iterator++].GetValue());
-
-        while (iterator < values.Length)
-        {
-            returnValue.Append($", {values[iterator++].GetValue()}");
-        }
-
-        returnValue.Append(");");
-        return returnValue.ToString();
-    }
-
     /// <summary>
+    /// Creates an sql insert row. 
     /// Requires the strings to have already been formatted as an sql datatype.
     /// </summary>
     /// <param name="tableName"></param>
@@ -49,7 +23,7 @@ public static class SQLRowCreator
 
         StringBuilder returnValue = new();
 
-        returnValue.Append($"insert into {tableName} values(");
+        returnValue.Append($"INSERT INTO {tableName} VALUES(");
 
         int iterator = 0;
         returnValue.Append(values[iterator++]);
@@ -61,5 +35,29 @@ public static class SQLRowCreator
 
         returnValue.Append(");");
         return returnValue.ToString();
+    }
+
+    /// <summary>
+    /// Creates an sql insert row. 
+    /// Supports int, double, DateTime, and string. 
+    /// Returns an empty string if values contians an unsupported type.
+    /// </summary>
+    /// <param name="tableName"></param>
+    /// <param name="values"></param>
+    /// <returns></returns>
+    public static string CreateRow(string tableName, params object[] values)
+    {
+        string[] returnList = new string[values.Length];
+        int i = 0;
+        string? result;
+
+        foreach(var obj in values)
+        {
+            result = obj.ToSQLValue();
+            if (result is null) return "";
+            else returnList[i++] = result;
+        }
+
+        return CreateRow(tableName, returnList);
     }
 }
