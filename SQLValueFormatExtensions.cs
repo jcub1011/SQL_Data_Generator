@@ -13,9 +13,39 @@ public static class SQLValueFormatExtensions
         return value.ToString();
     }
 
-    public static string AsSQLDate(this DateTime value)
+    /// <summary>
+    /// No time zone is specified. Up to second resolution.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static string AsSQLDateTime(this DateTime value)
+    {
+        return $"'{value.Year}-{value.Month}-{value.Day} {value.Hour}:{value.Minute}:{value.Second}'";
+    }
+
+    /// <summary>
+    /// Up to second resolution.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static string AsSQLDateOnly(this DateOnly value)
     {
         return $"'{value.Year}-{value.Month}-{value.Day}'";
+    }
+
+    /// <summary>
+    /// Up to second resolution.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static string AsSQLTimeOnly(this TimeOnly value)
+    {
+        return $"'{value.Hour}:{value.Minute}:{value.Second}'";
+    }
+
+    public static string AsISODate(this DateTime value)
+    {
+        return value.ToString("s");
     }
 
     public static string AsSQLString(this string value)
@@ -28,12 +58,19 @@ public static class SQLValueFormatExtensions
         return value.ToString();
     }
 
+    /// <summary>
+    /// Attempts to convert to an sql value and returns null if no definition exists.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static string? ToSQLValue(this object value)
     {
         if (value is int num) return num.AsSQLInt();
         else if (value is string str) return str.AsSQLString();
         else if (value is double d) return d.AsSQLDoublePrecision();
-        else if (value is DateTime date) return date.AsSQLDate();
+        else if (value is DateTime timestamp) return timestamp.AsSQLDateTime();
+        else if (value is TimeOnly time) return time.AsSQLTimeOnly();
+        else if (value is DateOnly date) return date.AsSQLDateOnly();
         else return null;
     }
 }

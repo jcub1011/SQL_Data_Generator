@@ -26,6 +26,18 @@ namespace SQL_Data_Generator
             return start.AddDays(_rand.Next(range));
         }
 
+
+        public static DateTime GetRandDateBetween(DateTime startTime, DateTime endTime, int startHour, int endHour, int minuteIncrement)
+        {
+            int dayDif = (endTime - startTime).Days;
+            startTime.AddDays(_rand.Next(dayDif+1));
+            long miliStart = startHour * 3600000;
+            long miliEnd = endHour * 3600000;
+            long displacement = (long)(_rand.NextDouble() * (miliEnd - miliStart));
+            displacement -= displacement % (minuteIncrement * 60000);
+            return startTime.AddDays(_rand.Next(dayDif)).AddMilliseconds(displacement + miliStart);
+        }
+
         /// <summary>
         /// Creates a random date starting from [today - dayRange] to 
         /// [today + dayRange].

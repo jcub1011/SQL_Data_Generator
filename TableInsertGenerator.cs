@@ -17,27 +17,33 @@ public static class TableInsertGenerator
     public static string CreateBooksInsert(List<BookRow> rows)
     {
         var result = new StringBuilder();
+        Random rand = new();
 
         foreach(var row in rows)
         {
             result.AppendLine(SQLRowCreator.CreateRow("books",
                 row.ISBN.AsSQLInt(),
                 row.Title.AsSQLString(),
-                row.Author.AsSQLString()));
+                row.Author.AsSQLString(),
+                rand.Next(10).AsSQLInt()));
         }
 
         return result.ToString();
     }
 
-    public static string CreateInventoryInsert(List<BookRow> rows)
+    public static string CreateUsesInsert(List<StudyRoomRow> studyroomRows, List<BorrowerRow> borrowerRows)
     {
         var result = new StringBuilder();
+        Random rand = new();
 
-        foreach(var row in rows)
+        foreach(var row in studyroomRows)
         {
-            result.AppendLine(SQLRowCreator.CreateRow("inventory",
-                row.ISBN.AsSQLInt(),
-                _rand.Next(10).AsSQLInt()));
+            // Skip roughly 25% so they aren't all booked.
+            if (rand.Next(int.MaxValue) % 4 == 0) continue;
+            result.AppendLine(SQLRowCreator.CreateRow("uses",
+                row.RoomNumber.AsSQLInt(),
+                PickRand(borrowerRows).ID.AsSQLInt(),
+                RandomDateGenerator.GetRandDateWithinRange(45).AsSQLDateTime()));
         }
 
         return result.ToString();
@@ -53,7 +59,7 @@ public static class TableInsertGenerator
                 row.ID.AsSQLInt(),
                 row.LastName.AsSQLString(),
                 row.FirstName.AsSQLString(),
-                row.DOB.AsSQLDate()));
+                row.DOB.AsSQLDateTime()));
         }
 
         return result.ToString();
@@ -74,7 +80,7 @@ public static class TableInsertGenerator
                 result.AppendLine(SQLRowCreator.CreateRow("loans",
                     borrower.ID.AsSQLInt(),
                     PickRand(books).ISBN.AsSQLInt(),
-                    RandomDateGenerator.GetRandDateWithinRange(15).AsSQLDate()));
+                    RandomDateGenerator.GetRandDateWithinRange(45).AsSQLDateTime()));
             }
         }
 
@@ -88,9 +94,7 @@ public static class TableInsertGenerator
         foreach (var room in rooms)
         {
             result.AppendLine(SQLRowCreator.CreateRow("studyrooms",
-                room.RoomNumber.AsSQLInt(),
-                PickRand(borrowers).ID.AsSQLInt(),
-                RandomDateGenerator.GetRandDateWithinRange(5).AsSQLDate()));
+                room.RoomNumber.AsSQLInt()));
         }
 
         return result.ToString();
